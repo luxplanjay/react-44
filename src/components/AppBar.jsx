@@ -1,18 +1,20 @@
+import { Box } from './Box';
 import { Logo } from './Logo';
-import { SearchBox } from './SeearchBox';
-import { UserMenu } from './UserMenu';
-
-const user = {
-  isPremium: true,
-  avatarURL: '',
-};
 
 export const AppBar = () => {
   return (
-    <header>
-      <Logo text={user.isPremium ? 'Premium' : 'YouTube'} />
-      <SearchBox />
-      <UserMenu avatar={user.avatarURL} />
-    </header>
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="space-between"
+      as="header"
+      px={4}
+      py={3}
+      mb={3}
+      bg="primary"
+    >
+      <Logo />
+      <div>UserMenu</div>
+    </Box>
   );
 };
