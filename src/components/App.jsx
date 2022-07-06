@@ -1,29 +1,32 @@
 import { Component } from 'react';
+import { HiAcademicCap, HiCalendar, HiArchive } from 'react-icons/hi';
+// import { Alert } from './Alert';
 import { Box } from './Box';
-import { Videos } from './Videos';
-import { Player } from './Player';
-import videos from '../videos.json';
+
+const options = [
+  { label: 'a', icon: HiAcademicCap },
+  { label: 'b', icon: HiCalendar },
+  { label: 'c', icon: HiArchive },
+];
 
 export class App extends Component {
   state = {
-    selectedVideo: null,
-  };
-
-  selectVideo = link => {
-    this.setState({ selectedVideo: link });
+    a: 1,
+    b: 2,
+    c: 3,
   };
 
   render() {
-    const { selectedVideo } = this.state;
-
     return (
       <Box as="main" px={4}>
-        <Videos
-          items={videos}
-          onSelect={this.selectVideo}
-          selected={selectedVideo}
-        />
-        {selectedVideo && <Player url={selectedVideo} />}
+        {options.map(({ label, icon: Icon }) => {
+          return (
+            <button key={label}>
+              <Icon />
+              {label}
+            </button>
+          );
+        })}
       </Box>
     );
   }
