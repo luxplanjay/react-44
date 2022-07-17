@@ -1,9 +1,13 @@
-// https://www.npmjs.com/package/react-debounce-input
+import { DebounceInput } from 'react-debounce-input';
 
 export const SearchBox = ({ onSearch }) => {
   return (
     <div>
-      <input type="text" onChange={e => onSearch(e.target.value)} />
+      <DebounceInput
+        minLength={1}
+        debounceTimeout={300}
+        onChange={e => onSearch(e.target.value)}
+      />
     </div>
   );
 };

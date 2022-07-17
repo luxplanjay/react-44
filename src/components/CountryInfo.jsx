@@ -1,5 +1,5 @@
 const formatLanguages = langs => {
-  return langs.map(lang => lang.name).join(', ');
+  return Object.values(langs).join(', ');
 };
 
 export const CountryInfo = ({ country }) => {
@@ -8,12 +8,12 @@ export const CountryInfo = ({ country }) => {
   return (
     <div>
       <h2>
-        <img src={flag} alt={name} width="40" height="40" />
-        {name}
+        {/* <img src={flag} alt={name} width="40" height="40" /> */}
+        {name.common}
       </h2>
 
       <p>
-        <b>Capital:</b> {capital}
+        <b>Capital:</b> {capital[0]}
       </p>
       <p>
         <b>Population:</b> {population}
