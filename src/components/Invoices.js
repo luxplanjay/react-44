@@ -5,7 +5,7 @@ import { getInvoices } from 'fakeApi';
 import { NavLink, Outlet } from 'react-router-dom';
 
 const NavItem = styled(NavLink)`
-  padding: ${p => p.theme.space[3]}px;
+  padding: ${p => p.theme.space[4]}px;
   text-decoration: none;
   color: ${p => p.theme.colors.text};
   border-radius: 8px;
@@ -20,7 +20,7 @@ const NavItem = styled(NavLink)`
   }
 `;
 
-export const Invoices = () => {
+const Invoices = () => {
   const [invoices, setInvoices] = useState([]);
 
   useEffect(() => {
@@ -33,7 +33,8 @@ export const Invoices = () => {
         as="aside"
         display="flex"
         flexDirection="column"
-        p={3}
+        px={5}
+        py={2}
         borderRight="1px solid black"
       >
         {invoices.map(({ id }) => (
@@ -46,3 +47,5 @@ export const Invoices = () => {
     </Box>
   );
 };
+
+export default Invoices;

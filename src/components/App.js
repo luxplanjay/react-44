@@ -1,17 +1,21 @@
-import { Sales } from 'pages/Sales';
+import { lazy } from 'react';
+import CustomerDetails from 'pages/CustomerDetails';
 import { Toaster } from 'react-hot-toast';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { GlobalStyle } from './GlobalStyle';
 import { InvoiceDetails } from './InvoiceDetails';
-import { Invoices } from './Invoices';
 import { Layout } from './Layout';
+
+const Sales = lazy(() => import('../pages/Sales'));
+const Customers = lazy(() => import('../pages/Customers'));
+const Invoices = lazy(() => import('./Invoices'));
 
 export const App = () => {
   return (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<div>Homepage index route</div>} />
+          <Route index element={<Navigate to="sales" />} />
           <Route path="dashboard" element={<div>Dashboard</div>} />
           <Route path="sales" element={<Sales />}>
             <Route index element={<div>Sales index route</div>} />
@@ -24,7 +28,8 @@ export const App = () => {
           </Route>
           <Route path="reports" element={<div>Reports</div>} />
           <Route path="feedback" element={<div>Feedback</div>} />
-          <Route path="customers" element={<div>Customers</div>} />
+          <Route path="customers" element={<Customers />} />
+          <Route path="customers/:customerId" element={<CustomerDetails />} />
         </Route>
       </Routes>
       <GlobalStyle />
