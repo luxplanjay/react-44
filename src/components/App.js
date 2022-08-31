@@ -1,48 +1,28 @@
-import { Toaster } from 'react-hot-toast';
-import { GlobalStyle } from './GlobalStyle';
-
-const fitlerSlice = createSlice({
-  initialState: {
-    value: '',
-  },
-});
-
-const contactsApi = createApi();
-
-
-
-
-configureStore({
-  reducers: {
-    contacts: combineReducers({
-      items: contactsApi.reducerPath,
-      filter: fitlerSlice.reducer
-    })
-  }
-})
-
-const useFilteredContacts = () => {
-  const { contacts } = useGetContactsQuery();
-  const filter = useSelector(state => state.contacts.filter.value);
-
-  return contacts.filter(...)
-}
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import TodosView from '../views/TodosView';
+import HomeView from '../views/HomeView';
+import RegisterView from '../views/RegisterView';
+import LoginView from '../views/LoginView';
+import { Layout } from './Layout';
+import { authOperations } from '../redux/auth';
 
 export const App = () => {
-  const contacts = useFilteredContacts()
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
 
   return (
-    <>
-      <GlobalStyle />
-      <Toaster position="top-right" reverseOrder={false} />
-      <button onClick={() => {
-        dispatch(contactsApi.util.resetApiState())
-      }}>Logout</button>
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomeView />} />
+        <Route path="/register" element={<RegisterView />} />
+        <Route path="/login" element={<LoginView />} />
+        <Route path="/todos" element={<TodosView />} />
+      </Route>
+    </Routes>
   );
 };
-
-
-
-
-
