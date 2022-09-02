@@ -1,5 +1,4 @@
-# Admin panel workshop
+# Stuff
 
-- Программная навигация на другой маршрут
-- Параметры строки запроса
-- Разделение кода
+- https://youtu.be/amlPrfUWTqo?list=PLQA0AQobpr9hSDAcXgYj14bae40xtiarj
+- https://youtu.be/h6wBYWWdyYQ

@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { useAuth } from 'hooks';
 
 const Link = styled(NavLink)`
   display: inline-block;
@@ -14,11 +15,15 @@ const Link = styled(NavLink)`
   }
 `;
 
-const Navigation = () => (
-  <nav>
-    <Link to="/">Главная</Link>
-    <Link to="/todos">Заметки</Link>
-  </nav>
-);
+const Navigation = () => {
+  const { isLoggedIn } = useAuth();
+
+  return (
+    <nav>
+      <Link to="/">Главная</Link>
+      {isLoggedIn && <Link to="/todos">Заметки</Link>}
+    </nav>
+  );
+};
 
 export default Navigation;
